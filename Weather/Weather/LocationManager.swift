@@ -1,6 +1,5 @@
 import Foundation
 import CoreLocation
-import CoreLocationUI
 
 class LocationManager: NSObject,CLLocationManagerDelegate, ObservableObject {
     private let manager = CLLocationManager()
