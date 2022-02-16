@@ -1,16 +1,18 @@
-//
-//  ContentView.swift
-//  Weather
-//
-//  Created by Freak on 15.02.2022.
-//
-
 import SwiftUI
+import CoreLocation
 
 struct ContentView: View {
+    @StateObject var manager = LocationManager()
+    
     var body: some View {
-        Text("Hello, world!")
-            .padding()
+        if let location = manager.location {
+            Text("Your location: \(location.latitude), \(location.longitude)")
+        }
+        
+        if let city = manager.city {
+            Text("Welcome to: \(city)")
+                .padding()
+        }
     }
 }
 
@@ -19,3 +21,4 @@ struct ContentView_Previews: PreviewProvider {
         ContentView()
     }
 }
+

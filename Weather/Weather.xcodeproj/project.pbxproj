@@ -14,6 +14,7 @@
 		42C95BE927BBC384001BA7A1 /* WeatherTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42C95BE827BBC384001BA7A1 /* WeatherTests.swift */; };
 		42C95BF327BBC384001BA7A1 /* WeatherUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42C95BF227BBC384001BA7A1 /* WeatherUITests.swift */; };
 		42C95BF527BBC384001BA7A1 /* WeatherUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42C95BF427BBC384001BA7A1 /* WeatherUITestsLaunchTests.swift */; };
+		42C95C0227BD1B6F001BA7A1 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42C95C0127BD1B6F001BA7A1 /* LocationManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,6 +45,7 @@
 		42C95BEE27BBC384001BA7A1 /* WeatherUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WeatherUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		42C95BF227BBC384001BA7A1 /* WeatherUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherUITests.swift; sourceTree = "<group>"; };
 		42C95BF427BBC384001BA7A1 /* WeatherUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		42C95C0127BD1B6F001BA7A1 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -98,6 +100,7 @@
 				42C95BD927BBC382001BA7A1 /* ContentView.swift */,
 				42C95BDB27BBC383001BA7A1 /* Assets.xcassets */,
 				42C95BDD27BBC383001BA7A1 /* Preview Content */,
+				42C95C0127BD1B6F001BA7A1 /* LocationManager.swift */,
 			);
 			path = Weather;
 			sourceTree = "<group>";
@@ -259,6 +262,7 @@
 			files = (
 				42C95BDA27BBC382001BA7A1 /* ContentView.swift in Sources */,
 				42C95BD827BBC382001BA7A1 /* WeatherApp.swift in Sources */,
+				42C95C0227BD1B6F001BA7A1 /* LocationManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -421,6 +425,8 @@
 				DEVELOPMENT_ASSET_PATHS = "\"Weather/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "Allow this app to access location data?";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Allow this app to access location data?";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -449,6 +455,8 @@
 				DEVELOPMENT_ASSET_PATHS = "\"Weather/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "Allow this app to access location data?";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Allow this app to access location data?";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
