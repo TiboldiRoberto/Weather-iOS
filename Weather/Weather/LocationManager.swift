@@ -6,6 +6,28 @@ class LocationManager: NSObject,CLLocationManagerDelegate, ObservableObject {
     
     @Published var location: CLLocationCoordinate2D?
     @Published var city: String?
+    @Published var countryCode: String?
+    @Published var result: WeatherDateQueryQuery.Data.GetCityByName.Weather?
+    
+    var actualTemp: String {
+        let actual = result?.temperature?.actual ?? 0.0  
+        return String(format: "%.1f °C", actual)
+    }
+    
+    var feelsLikeTemp: String {
+        let feelsLike = result?.temperature?.feelsLike ?? 0.0
+        return String(format: "%.1f °C ", feelsLike)
+    }
+    
+    var minTemp: String {
+        let min = result?.temperature?.min ?? 0.0
+        return String(format: "%.1f °C", min)
+    }
+    
+    var maxTemp: String {
+        let max = result?.temperature?.max ?? 0.0
+        return String(format: "%.1f °C", max)
+    }
     
     override init() {
         super.init()
@@ -20,6 +42,8 @@ class LocationManager: NSObject,CLLocationManagerDelegate, ObservableObject {
         
         lookUpCurrentLocation { response in
             self.city = response?.locality
+            self.countryCode = response?.isoCountryCode
+            self.getWeather()
         }
     }
     
@@ -43,4 +67,16 @@ class LocationManager: NSObject,CLLocationManagerDelegate, ObservableObject {
             completionHandler(nil)
         }
     }
+    
+    func getWeather(){
+        Network.shared.apollo.fetch(query: WeatherDateQueryQuery(name: city ?? "", country: countryCode)) { result in
+          switch result {
+          case .success(let graphQLResult):
+              self.result = graphQLResult.data?.getCityByName?.weather
+          case .failure(let error):
+            print("Failure! Error: \(error)")
+          }
+        }
+    }
+    
 }

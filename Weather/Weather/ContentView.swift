@@ -23,14 +23,25 @@ struct ContentView: View {
             
             VStack{
                 Spacer()
-                Text("18°")
-                    .font(.system(size: 75))
-                    .padding()
+                    Text(manager.actualTemp)
+                        .font(.system(size: 75))
+                        .padding()
                 HStack{
-                    Text("actual")
-                    Text("feelsLike")
-                    Text("min")
-                    Text("max")
+                        VStack{
+                            Text("FeelsLike")
+                                .bold()
+                            Text(manager.feelsLikeTemp)
+                        }
+                        VStack{
+                            Text("Min")
+                                .bold()
+                            Text(manager.minTemp)
+                        }
+                        VStack{
+                            Text("Max")
+                                .bold()
+                            Text(manager.maxTemp)
+                        }
                 }
                 Spacer()
             }
