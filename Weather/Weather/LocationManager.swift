@@ -6,6 +6,7 @@ class LocationManager: NSObject,CLLocationManagerDelegate, ObservableObject {
     
     @Published var location: CLLocationCoordinate2D?
     @Published var city: String?
+    @Published var result: WeatherDateQueryQuery.Data.GetCityByName.Weather?
     
     override init() {
         super.init()
@@ -43,4 +44,16 @@ class LocationManager: NSObject,CLLocationManagerDelegate, ObservableObject {
             completionHandler(nil)
         }
     }
+    
+    func getWeather(){
+        Network.shared.apollo.fetch(query: WeatherDateQueryQuery()) { result in
+          switch result {
+          case .success(let graphQLResult):
+              self.result = graphQLResult.data?.getCityByName?.weather
+          case .failure(let error):
+            print("Failure! Error: \(error)")
+          }
+        }
+    }
+    
 }
