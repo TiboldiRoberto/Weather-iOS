@@ -6,6 +6,7 @@ class LocationManager: NSObject,CLLocationManagerDelegate, ObservableObject {
     
     @Published var location: CLLocationCoordinate2D?
     @Published var city: String?
+    @Published var countryCode: String?
     @Published var result: WeatherDateQueryQuery.Data.GetCityByName.Weather?
     
     var actualTemp: String {
@@ -41,6 +42,7 @@ class LocationManager: NSObject,CLLocationManagerDelegate, ObservableObject {
         
         lookUpCurrentLocation { response in
             self.city = response?.locality
+            self.countryCode = response?.isoCountryCode
             self.getWeather()
         }
     }
@@ -67,7 +69,7 @@ class LocationManager: NSObject,CLLocationManagerDelegate, ObservableObject {
     }
     
     func getWeather(){
-        Network.shared.apollo.fetch(query: WeatherDateQueryQuery(name: city ?? "")) { result in
+        Network.shared.apollo.fetch(query: WeatherDateQueryQuery(name: city ?? "", country: countryCode)) { result in
           switch result {
           case .success(let graphQLResult):
               self.result = graphQLResult.data?.getCityByName?.weather
