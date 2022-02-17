@@ -23,29 +23,25 @@ struct ContentView: View {
             
             VStack{
                 Spacer()
-                Text("18°")
-                    .font(.system(size: 75))
-                    .padding()
+                    Text(manager.actualTemp)
+                        .font(.system(size: 75))
+                        .padding()
                 HStack{
-                    if let weather = manager.result {
-                        VStack{
-                            Text("Actual")
-                            Text("\(weather.temperature?.actual ?? 0.0)")
-                        }
                         VStack{
                             Text("FeelsLike")
-                            Text("\(weather.temperature?.feelsLike ?? 0.0)")
+                                .bold()
+                            Text(manager.feelsLikeTemp)
                         }
                         VStack{
                             Text("Min")
-                            Text("\(weather.temperature?.min ?? 0.0)")
+                                .bold()
+                            Text(manager.minTemp)
                         }
                         VStack{
                             Text("Max")
-                            Text("\(weather.temperature?.max ?? 0.0)")
+                                .bold()
+                            Text(manager.maxTemp)
                         }
-                        
-                    }
                 }
                 Spacer()
             }

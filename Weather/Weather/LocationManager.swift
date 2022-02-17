@@ -8,6 +8,26 @@ class LocationManager: NSObject,CLLocationManagerDelegate, ObservableObject {
     @Published var city: String?
     @Published var result: WeatherDateQueryQuery.Data.GetCityByName.Weather?
     
+    var actualTemp: String {
+        let actual = result?.temperature?.actual ?? 0.0  
+        return String(format: "%.1f °C", actual)
+    }
+    
+    var feelsLikeTemp: String {
+        let feelsLike = result?.temperature?.feelsLike ?? 0.0
+        return String(format: "%.1f °C ", feelsLike)
+    }
+    
+    var minTemp: String {
+        let min = result?.temperature?.min ?? 0.0
+        return String(format: "%.1f °C", min)
+    }
+    
+    var maxTemp: String {
+        let max = result?.temperature?.max ?? 0.0
+        return String(format: "%.1f °C", max)
+    }
+    
     override init() {
         super.init()
         manager.delegate = self
