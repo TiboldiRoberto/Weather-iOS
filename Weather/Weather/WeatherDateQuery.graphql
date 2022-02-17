@@ -1,6 +1,6 @@
 # Write your query or mutation here
-query WeatherDateQuery {
-  getCityByName(name: "Sibiu", country: "RO", config: { units: metric }) {
+query WeatherDateQuery($name: String!, $country: String) {
+  getCityByName(name: $name, country: $country, config: { units: metric }) {
     name
     weather {
       temperature {
@@ -12,3 +12,5 @@ query WeatherDateQuery {
     }
   }
 }
+
+

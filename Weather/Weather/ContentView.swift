@@ -72,9 +72,6 @@ struct ContentView: View {
             
             Spacer()
         }
-        .onAppear {
-            manager.getWeather()
-        }
     }
     
 }

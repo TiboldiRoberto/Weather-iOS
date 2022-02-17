@@ -41,6 +41,7 @@ class LocationManager: NSObject,CLLocationManagerDelegate, ObservableObject {
         
         lookUpCurrentLocation { response in
             self.city = response?.locality
+            self.getWeather()
         }
     }
     
@@ -66,7 +67,7 @@ class LocationManager: NSObject,CLLocationManagerDelegate, ObservableObject {
     }
     
     func getWeather(){
-        Network.shared.apollo.fetch(query: WeatherDateQueryQuery()) { result in
+        Network.shared.apollo.fetch(query: WeatherDateQueryQuery(name: city ?? "")) { result in
           switch result {
           case .success(let graphQLResult):
               self.result = graphQLResult.data?.getCityByName?.weather

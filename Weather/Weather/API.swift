@@ -8,8 +8,8 @@ public final class WeatherDateQueryQuery: GraphQLQuery {
   /// The raw GraphQL definition of this operation.
   public let operationDefinition: String =
     """
-    query WeatherDateQuery {
-      getCityByName(name: "Sibiu", country: "RO", config: {units: metric}) {
+    query WeatherDateQuery($name: String!, $country: String) {
+      getCityByName(name: $name, country: $country, config: {units: metric}) {
         __typename
         name
         weather {
@@ -28,7 +28,16 @@ public final class WeatherDateQueryQuery: GraphQLQuery {
 
   public let operationName: String = "WeatherDateQuery"
 
-  public init() {
+  public var name: String
+  public var country: String?
+
+  public init(name: String, country: String? = nil) {
+    self.name = name
+    self.country = country
+  }
+
+  public var variables: GraphQLMap? {
+    return ["name": name, "country": country]
   }
 
   public struct Data: GraphQLSelectionSet {
@@ -36,7 +45,7 @@ public final class WeatherDateQueryQuery: GraphQLQuery {
 
     public static var selections: [GraphQLSelection] {
       return [
-        GraphQLField("getCityByName", arguments: ["name": "Sibiu", "country": "RO", "config": ["units": "metric"]], type: .object(GetCityByName.selections)),
+        GraphQLField("getCityByName", arguments: ["name": GraphQLVariable("name"), "country": GraphQLVariable("country"), "config": ["units": "metric"]], type: .object(GetCityByName.selections)),
       ]
     }
 
